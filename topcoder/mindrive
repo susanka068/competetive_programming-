@@ -1,0 +1,45 @@
+#include <vector>
+#include <list>
+#include <map>
+#include <set>
+#include <queue>
+#include <deque>
+#include <stack>
+#include <bitset>
+#include <algorithm>
+#include <functional>
+#include <numeric>
+#include <utility>
+#include <sstream>
+#include <iostream>
+#include <iomanip>
+#include <cstdio>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+
+class DiskSpace {
+public:
+	int minDrives(vector <int> used, vector <int> total) {
+		int used_sum = 0 ; 
+		for(auto u : used )
+			used_sum += u ; 
+		sort(total.begin(),total.end());
+		int v = 0 ; 
+		for(auto& u : total ) 
+		{
+			u += v ; 
+			v = u ;   
+		} 
+		auto res = upper_bound(total.begin(),total.end(),used_sum);
+		
+		return (res - total.begin());
+	}
+};
+
+
+<%:testing-code%>
+//Powered by KawigiEdit 2.1.4 (beta) modified by pivanof!
